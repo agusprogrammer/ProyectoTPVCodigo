@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="35b7592ab8134b688a0645f456ccad99" Name="Diagram1">
+        <EntityTypeShape EntityType="proyecto_tpvModel.categorias" Width="1.5" PointX="3" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyecto_tpvModel.clientes" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyecto_tpvModel.ofertas" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyecto_tpvModel.permisos" Width="1.5" PointX="3.75" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyecto_tpvModel.productos" Width="1.5" PointX="5.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyecto_tpvModel.productos_y_ubicaciones" Width="1.5" PointX="7.5" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyecto_tpvModel.roles" Width="1.5" PointX="1.5" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyecto_tpvModel.tipos_de_productos" Width="1.5" PointX="0.75" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyecto_tpvModel.ubicaciones" Width="1.5" PointX="5.25" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyecto_tpvModel.usuarios" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyecto_tpvModel.ventas" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyecto_tpvModel.ventas_de_productos" Width="1.5" PointX="7.5" PointY="3.125" IsExpanded="true" />
+        <AssociationConnector Association="proyecto_tpvModel.categorias_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="proyecto_tpvModel.fk_prodCateg" ManuallyRouted="false" />
+        <AssociationConnector Association="proyecto_tpvModel.fk_cliente_venta" ManuallyRouted="false" />
+        <AssociationConnector Association="proyecto_tpvModel.productos_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="proyecto_tpvModel.productos_y_ubicaciones_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="proyecto_tpvModel.ventas_de_productos_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="proyecto_tpvModel.productos_y_ubicaciones_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="proyecto_tpvModel.usuarios_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="proyecto_tpvModel.fk_usuarios_venta" ManuallyRouted="false" />
+        <AssociationConnector Association="proyecto_tpvModel.ventas_de_productos_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="proyecto_tpvModel.ofertas_envio_clientes" ManuallyRouted="false" />
+        <AssociationConnector Association="proyecto_tpvModel.permisos_y_roles" ManuallyRouted="false" />
+        <AssociationConnector Association="proyecto_tpvModel.ubicaciones_pertenecen" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

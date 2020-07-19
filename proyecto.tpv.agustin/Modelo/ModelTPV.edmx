@@ -1,0 +1,936 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="proyecto_tpvModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="categorias">
+          <Key>
+            <PropertyRef Name="cod_categoria" />
+          </Key>
+          <Property Name="cod_categoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="categoria" Type="varchar" MaxLength="60" />
+          <Property Name="cod_tipo_producto" Type="int" />
+        </EntityType>
+        <EntityType Name="clientes">
+          <Key>
+            <PropertyRef Name="cod_cliente" />
+          </Key>
+          <Property Name="cod_cliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="60" />
+          <Property Name="apellidos" Type="varchar" MaxLength="100" />
+          <Property Name="direccion" Type="varchar" MaxLength="100" />
+          <Property Name="e_mail" Type="varchar" MaxLength="60" />
+          <Property Name="poblacion" Type="varchar" MaxLength="70" />
+          <Property Name="tipo_de_direccion" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ofertas">
+          <Key>
+            <PropertyRef Name="cod_oferta" />
+          </Key>
+          <Property Name="cod_oferta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="100" />
+          <Property Name="periodo_oferta" Type="date" />
+          <Property Name="fichero" Type="varchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="ofertas_envio_clientes">
+          <Key>
+            <PropertyRef Name="cod_cliente" />
+            <PropertyRef Name="cod_oferta" />
+          </Key>
+          <Property Name="cod_cliente" Type="int" Nullable="false" />
+          <Property Name="cod_oferta" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="permisos">
+          <Key>
+            <PropertyRef Name="cod_permiso" />
+          </Key>
+          <Property Name="cod_permiso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="100" />
+          <Property Name="permiso_activado" Type="bool" />
+        </EntityType>
+        <EntityType Name="permisos_y_roles">
+          <Key>
+            <PropertyRef Name="cod_rol" />
+            <PropertyRef Name="cod_permiso" />
+          </Key>
+          <Property Name="cod_rol" Type="int" Nullable="false" />
+          <Property Name="cod_permiso" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="productos">
+          <Key>
+            <PropertyRef Name="cod_producto" />
+          </Key>
+          <Property Name="cod_producto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="100" />
+          <Property Name="precio" Type="double" />
+          <Property Name="cod_categoria" Type="int" />
+          <Property Name="cod_oferta" Type="int" />
+          <Property Name="imagen_producto" Type="blob" />
+        </EntityType>
+        <EntityType Name="productos_y_ubicaciones">
+          <Key>
+            <PropertyRef Name="cod_producto" />
+            <PropertyRef Name="cod_ubicacion" />
+          </Key>
+          <Property Name="cod_producto" Type="int" Nullable="false" />
+          <Property Name="cod_ubicacion" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="cantidad_en_stock" Type="int" />
+        </EntityType>
+        <EntityType Name="roles">
+          <Key>
+            <PropertyRef Name="cod_rol" />
+          </Key>
+          <Property Name="cod_rol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tipo_rol" Type="varchar" MaxLength="60" />
+        </EntityType>
+        <EntityType Name="tipos_de_productos">
+          <Key>
+            <PropertyRef Name="cod_tipo_producto" />
+          </Key>
+          <Property Name="cod_tipo_producto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tipo_de_producto" Type="varchar" MaxLength="60" />
+        </EntityType>
+        <EntityType Name="ubicaciones">
+          <Key>
+            <PropertyRef Name="cod_ubicacion" />
+          </Key>
+          <Property Name="cod_ubicacion" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="descripcion_ubicacion" Type="varchar" MaxLength="100" />
+          <Property Name="tipo_almacen" Type="bool" />
+        </EntityType>
+        <EntityType Name="ubicaciones_pertenecen">
+          <Key>
+            <PropertyRef Name="cod_ubicacion_almacen" />
+            <PropertyRef Name="cod_ubicacion_tienda" />
+          </Key>
+          <Property Name="cod_ubicacion_almacen" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="cod_ubicacion_tienda" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="usuarios">
+          <Key>
+            <PropertyRef Name="cod_usuario" />
+          </Key>
+          <Property Name="cod_usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_usu" Type="varchar" MaxLength="60" />
+          <Property Name="apellidos_usu" Type="varchar" MaxLength="100" />
+          <Property Name="usuario" Type="varchar" MaxLength="60" />
+          <Property Name="contrasenya" Type="varchar" MaxLength="60" />
+          <Property Name="cod_rol" Type="int" />
+        </EntityType>
+        <EntityType Name="ventas">
+          <Key>
+            <PropertyRef Name="cod_venta" />
+          </Key>
+          <Property Name="cod_venta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cod_usuario" Type="int" Nullable="false" />
+          <Property Name="mensaje" Type="varchar" MaxLength="100" />
+          <Property Name="fecha" Type="datetime" Precision="0" />
+          <Property Name="total" Type="double" />
+          <Property Name="iva" Type="double" />
+          <Property Name="cod_cliente" Type="int" Nullable="false" />
+          <Property Name="total_mas_iva" Type="double" />
+        </EntityType>
+        <EntityType Name="ventas_de_productos">
+          <Key>
+            <PropertyRef Name="cod_venta" />
+            <PropertyRef Name="cod_producto" />
+          </Key>
+          <Property Name="cod_venta" Type="int" Nullable="false" />
+          <Property Name="cod_producto" Type="int" Nullable="false" />
+          <Property Name="cantidad_vendida" Type="int" />
+          <Property Name="precio_total_unidades" Type="double" />
+        </EntityType>
+        <Association Name="categorias_ibfk_1">
+          <End Role="tipos_de_productos" Type="Self.tipos_de_productos" Multiplicity="0..1" />
+          <End Role="categorias" Type="Self.categorias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipos_de_productos">
+              <PropertyRef Name="cod_tipo_producto" />
+            </Principal>
+            <Dependent Role="categorias">
+              <PropertyRef Name="cod_tipo_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_cliente_venta">
+          <End Role="clientes" Type="Self.clientes" Multiplicity="1" />
+          <End Role="ventas" Type="Self.ventas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clientes">
+              <PropertyRef Name="cod_cliente" />
+            </Principal>
+            <Dependent Role="ventas">
+              <PropertyRef Name="cod_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_prodCateg">
+          <End Role="categorias" Type="Self.categorias" Multiplicity="0..1" />
+          <End Role="productos" Type="Self.productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categorias">
+              <PropertyRef Name="cod_categoria" />
+            </Principal>
+            <Dependent Role="productos">
+              <PropertyRef Name="cod_categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_usuarios_venta">
+          <End Role="usuarios" Type="Self.usuarios" Multiplicity="1" />
+          <End Role="ventas" Type="Self.ventas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuarios">
+              <PropertyRef Name="cod_usuario" />
+            </Principal>
+            <Dependent Role="ventas">
+              <PropertyRef Name="cod_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ofertas_envio_clientes_ibfk_1">
+          <End Role="clientes" Type="Self.clientes" Multiplicity="1" />
+          <End Role="ofertas_envio_clientes" Type="Self.ofertas_envio_clientes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clientes">
+              <PropertyRef Name="cod_cliente" />
+            </Principal>
+            <Dependent Role="ofertas_envio_clientes">
+              <PropertyRef Name="cod_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ofertas_envio_clientes_ibfk_2">
+          <End Role="ofertas" Type="Self.ofertas" Multiplicity="1" />
+          <End Role="ofertas_envio_clientes" Type="Self.ofertas_envio_clientes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ofertas">
+              <PropertyRef Name="cod_oferta" />
+            </Principal>
+            <Dependent Role="ofertas_envio_clientes">
+              <PropertyRef Name="cod_oferta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="permisos_y_roles_ibfk_1">
+          <End Role="roles" Type="Self.roles" Multiplicity="1" />
+          <End Role="permisos_y_roles" Type="Self.permisos_y_roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="roles">
+              <PropertyRef Name="cod_rol" />
+            </Principal>
+            <Dependent Role="permisos_y_roles">
+              <PropertyRef Name="cod_rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="permisos_y_roles_ibfk_2">
+          <End Role="permisos" Type="Self.permisos" Multiplicity="1" />
+          <End Role="permisos_y_roles" Type="Self.permisos_y_roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="permisos">
+              <PropertyRef Name="cod_permiso" />
+            </Principal>
+            <Dependent Role="permisos_y_roles">
+              <PropertyRef Name="cod_permiso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="productos_ibfk_1">
+          <End Role="ofertas" Type="Self.ofertas" Multiplicity="0..1" />
+          <End Role="productos" Type="Self.productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ofertas">
+              <PropertyRef Name="cod_oferta" />
+            </Principal>
+            <Dependent Role="productos">
+              <PropertyRef Name="cod_oferta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="productos_y_ubicaciones_ibfk_1">
+          <End Role="productos" Type="Self.productos" Multiplicity="1" />
+          <End Role="productos_y_ubicaciones" Type="Self.productos_y_ubicaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productos">
+              <PropertyRef Name="cod_producto" />
+            </Principal>
+            <Dependent Role="productos_y_ubicaciones">
+              <PropertyRef Name="cod_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="productos_y_ubicaciones_ibfk_2">
+          <End Role="ubicaciones" Type="Self.ubicaciones" Multiplicity="1" />
+          <End Role="productos_y_ubicaciones" Type="Self.productos_y_ubicaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ubicaciones">
+              <PropertyRef Name="cod_ubicacion" />
+            </Principal>
+            <Dependent Role="productos_y_ubicaciones">
+              <PropertyRef Name="cod_ubicacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ubicaciones_pertenecen_ibfk_1">
+          <End Role="ubicaciones" Type="Self.ubicaciones" Multiplicity="1" />
+          <End Role="ubicaciones_pertenecen" Type="Self.ubicaciones_pertenecen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ubicaciones">
+              <PropertyRef Name="cod_ubicacion" />
+            </Principal>
+            <Dependent Role="ubicaciones_pertenecen">
+              <PropertyRef Name="cod_ubicacion_almacen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ubicaciones_pertenecen_ibfk_2">
+          <End Role="ubicaciones" Type="Self.ubicaciones" Multiplicity="1" />
+          <End Role="ubicaciones_pertenecen" Type="Self.ubicaciones_pertenecen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ubicaciones">
+              <PropertyRef Name="cod_ubicacion" />
+            </Principal>
+            <Dependent Role="ubicaciones_pertenecen">
+              <PropertyRef Name="cod_ubicacion_tienda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="usuarios_ibfk_1">
+          <End Role="roles" Type="Self.roles" Multiplicity="0..1" />
+          <End Role="usuarios" Type="Self.usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="roles">
+              <PropertyRef Name="cod_rol" />
+            </Principal>
+            <Dependent Role="usuarios">
+              <PropertyRef Name="cod_rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ventas_de_productos_ibfk_1">
+          <End Role="ventas" Type="Self.ventas" Multiplicity="1" />
+          <End Role="ventas_de_productos" Type="Self.ventas_de_productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ventas">
+              <PropertyRef Name="cod_venta" />
+            </Principal>
+            <Dependent Role="ventas_de_productos">
+              <PropertyRef Name="cod_venta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ventas_de_productos_ibfk_2">
+          <End Role="productos" Type="Self.productos" Multiplicity="1" />
+          <End Role="ventas_de_productos" Type="Self.ventas_de_productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productos">
+              <PropertyRef Name="cod_producto" />
+            </Principal>
+            <Dependent Role="ventas_de_productos">
+              <PropertyRef Name="cod_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="proyecto_tpvModelStoreContainer">
+          <EntitySet Name="categorias" EntityType="Self.categorias" Schema="proyecto_tpv" store:Type="Tables" />
+          <EntitySet Name="clientes" EntityType="Self.clientes" Schema="proyecto_tpv" store:Type="Tables" />
+          <EntitySet Name="ofertas" EntityType="Self.ofertas" Schema="proyecto_tpv" store:Type="Tables" />
+          <EntitySet Name="ofertas_envio_clientes" EntityType="Self.ofertas_envio_clientes" Schema="proyecto_tpv" store:Type="Tables" />
+          <EntitySet Name="permisos" EntityType="Self.permisos" Schema="proyecto_tpv" store:Type="Tables" />
+          <EntitySet Name="permisos_y_roles" EntityType="Self.permisos_y_roles" Schema="proyecto_tpv" store:Type="Tables" />
+          <EntitySet Name="productos" EntityType="Self.productos" Schema="proyecto_tpv" store:Type="Tables" />
+          <EntitySet Name="productos_y_ubicaciones" EntityType="Self.productos_y_ubicaciones" Schema="proyecto_tpv" store:Type="Tables" />
+          <EntitySet Name="roles" EntityType="Self.roles" Schema="proyecto_tpv" store:Type="Tables" />
+          <EntitySet Name="tipos_de_productos" EntityType="Self.tipos_de_productos" Schema="proyecto_tpv" store:Type="Tables" />
+          <EntitySet Name="ubicaciones" EntityType="Self.ubicaciones" Schema="proyecto_tpv" store:Type="Tables" />
+          <EntitySet Name="ubicaciones_pertenecen" EntityType="Self.ubicaciones_pertenecen" Schema="proyecto_tpv" store:Type="Tables" />
+          <EntitySet Name="usuarios" EntityType="Self.usuarios" Schema="proyecto_tpv" store:Type="Tables" />
+          <EntitySet Name="ventas" EntityType="Self.ventas" Schema="proyecto_tpv" store:Type="Tables" />
+          <EntitySet Name="ventas_de_productos" EntityType="Self.ventas_de_productos" Schema="proyecto_tpv" store:Type="Tables" />
+          <AssociationSet Name="categorias_ibfk_1" Association="Self.categorias_ibfk_1">
+            <End Role="tipos_de_productos" EntitySet="tipos_de_productos" />
+            <End Role="categorias" EntitySet="categorias" />
+          </AssociationSet>
+          <AssociationSet Name="fk_cliente_venta" Association="Self.fk_cliente_venta">
+            <End Role="clientes" EntitySet="clientes" />
+            <End Role="ventas" EntitySet="ventas" />
+          </AssociationSet>
+          <AssociationSet Name="fk_prodCateg" Association="Self.fk_prodCateg">
+            <End Role="categorias" EntitySet="categorias" />
+            <End Role="productos" EntitySet="productos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_usuarios_venta" Association="Self.fk_usuarios_venta">
+            <End Role="usuarios" EntitySet="usuarios" />
+            <End Role="ventas" EntitySet="ventas" />
+          </AssociationSet>
+          <AssociationSet Name="ofertas_envio_clientes_ibfk_1" Association="Self.ofertas_envio_clientes_ibfk_1">
+            <End Role="clientes" EntitySet="clientes" />
+            <End Role="ofertas_envio_clientes" EntitySet="ofertas_envio_clientes" />
+          </AssociationSet>
+          <AssociationSet Name="ofertas_envio_clientes_ibfk_2" Association="Self.ofertas_envio_clientes_ibfk_2">
+            <End Role="ofertas" EntitySet="ofertas" />
+            <End Role="ofertas_envio_clientes" EntitySet="ofertas_envio_clientes" />
+          </AssociationSet>
+          <AssociationSet Name="permisos_y_roles_ibfk_1" Association="Self.permisos_y_roles_ibfk_1">
+            <End Role="roles" EntitySet="roles" />
+            <End Role="permisos_y_roles" EntitySet="permisos_y_roles" />
+          </AssociationSet>
+          <AssociationSet Name="permisos_y_roles_ibfk_2" Association="Self.permisos_y_roles_ibfk_2">
+            <End Role="permisos" EntitySet="permisos" />
+            <End Role="permisos_y_roles" EntitySet="permisos_y_roles" />
+          </AssociationSet>
+          <AssociationSet Name="productos_ibfk_1" Association="Self.productos_ibfk_1">
+            <End Role="ofertas" EntitySet="ofertas" />
+            <End Role="productos" EntitySet="productos" />
+          </AssociationSet>
+          <AssociationSet Name="productos_y_ubicaciones_ibfk_1" Association="Self.productos_y_ubicaciones_ibfk_1">
+            <End Role="productos" EntitySet="productos" />
+            <End Role="productos_y_ubicaciones" EntitySet="productos_y_ubicaciones" />
+          </AssociationSet>
+          <AssociationSet Name="productos_y_ubicaciones_ibfk_2" Association="Self.productos_y_ubicaciones_ibfk_2">
+            <End Role="ubicaciones" EntitySet="ubicaciones" />
+            <End Role="productos_y_ubicaciones" EntitySet="productos_y_ubicaciones" />
+          </AssociationSet>
+          <AssociationSet Name="ubicaciones_pertenecen_ibfk_1" Association="Self.ubicaciones_pertenecen_ibfk_1">
+            <End Role="ubicaciones" EntitySet="ubicaciones" />
+            <End Role="ubicaciones_pertenecen" EntitySet="ubicaciones_pertenecen" />
+          </AssociationSet>
+          <AssociationSet Name="ubicaciones_pertenecen_ibfk_2" Association="Self.ubicaciones_pertenecen_ibfk_2">
+            <End Role="ubicaciones" EntitySet="ubicaciones" />
+            <End Role="ubicaciones_pertenecen" EntitySet="ubicaciones_pertenecen" />
+          </AssociationSet>
+          <AssociationSet Name="usuarios_ibfk_1" Association="Self.usuarios_ibfk_1">
+            <End Role="roles" EntitySet="roles" />
+            <End Role="usuarios" EntitySet="usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="ventas_de_productos_ibfk_1" Association="Self.ventas_de_productos_ibfk_1">
+            <End Role="ventas" EntitySet="ventas" />
+            <End Role="ventas_de_productos" EntitySet="ventas_de_productos" />
+          </AssociationSet>
+          <AssociationSet Name="ventas_de_productos_ibfk_2" Association="Self.ventas_de_productos_ibfk_2">
+            <End Role="productos" EntitySet="productos" />
+            <End Role="ventas_de_productos" EntitySet="ventas_de_productos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="proyecto_tpvModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="categorias">
+          <Key>
+            <PropertyRef Name="cod_categoria" />
+          </Key>
+          <Property Name="cod_categoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="categoria" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="cod_tipo_producto" Type="Int32" />
+          <NavigationProperty Name="tipos_de_productos" Relationship="Self.categorias_ibfk_1" FromRole="categorias" ToRole="tipos_de_productos" />
+          <NavigationProperty Name="productos" Relationship="Self.fk_prodCateg" FromRole="categorias" ToRole="productos" />
+        </EntityType>
+        <EntityType Name="clientes">
+          <Key>
+            <PropertyRef Name="cod_cliente" />
+          </Key>
+          <Property Name="cod_cliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="apellidos" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="e_mail" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="poblacion" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="tipo_de_direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ventas" Relationship="Self.fk_cliente_venta" FromRole="clientes" ToRole="ventas" />
+          <NavigationProperty Name="ofertas" Relationship="Self.ofertas_envio_clientes" FromRole="clientes" ToRole="ofertas" />
+        </EntityType>
+        <EntityType Name="ofertas">
+          <Key>
+            <PropertyRef Name="cod_oferta" />
+          </Key>
+          <Property Name="cod_oferta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="periodo_oferta" Type="DateTime" />
+          <Property Name="fichero" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="productos" Relationship="Self.productos_ibfk_1" FromRole="ofertas" ToRole="productos" />
+          <NavigationProperty Name="clientes" Relationship="Self.ofertas_envio_clientes" FromRole="ofertas" ToRole="clientes" />
+        </EntityType>
+        <EntityType Name="permisos">
+          <Key>
+            <PropertyRef Name="cod_permiso" />
+          </Key>
+          <Property Name="cod_permiso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="permiso_activado" Type="Boolean" />
+          <NavigationProperty Name="roles" Relationship="Self.permisos_y_roles" FromRole="permisos" ToRole="roles" />
+        </EntityType>
+        <EntityType Name="productos">
+          <Key>
+            <PropertyRef Name="cod_producto" />
+          </Key>
+          <Property Name="cod_producto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="precio" Type="Double" />
+          <Property Name="cod_categoria" Type="Int32" />
+          <Property Name="cod_oferta" Type="Int32" />
+          <Property Name="imagen_producto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="categorias" Relationship="Self.fk_prodCateg" FromRole="productos" ToRole="categorias" />
+          <NavigationProperty Name="ofertas" Relationship="Self.productos_ibfk_1" FromRole="productos" ToRole="ofertas" />
+          <NavigationProperty Name="productos_y_ubicaciones" Relationship="Self.productos_y_ubicaciones_ibfk_1" FromRole="productos" ToRole="productos_y_ubicaciones" />
+          <NavigationProperty Name="ventas_de_productos" Relationship="Self.ventas_de_productos_ibfk_2" FromRole="productos" ToRole="ventas_de_productos" />
+        </EntityType>
+        <EntityType Name="productos_y_ubicaciones">
+          <Key>
+            <PropertyRef Name="cod_producto" />
+            <PropertyRef Name="cod_ubicacion" />
+          </Key>
+          <Property Name="cod_producto" Type="Int32" Nullable="false" />
+          <Property Name="cod_ubicacion" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cantidad_en_stock" Type="Int32" />
+          <NavigationProperty Name="productos" Relationship="Self.productos_y_ubicaciones_ibfk_1" FromRole="productos_y_ubicaciones" ToRole="productos" />
+          <NavigationProperty Name="ubicaciones" Relationship="Self.productos_y_ubicaciones_ibfk_2" FromRole="productos_y_ubicaciones" ToRole="ubicaciones" />
+        </EntityType>
+        <EntityType Name="roles">
+          <Key>
+            <PropertyRef Name="cod_rol" />
+          </Key>
+          <Property Name="cod_rol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tipo_rol" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="usuarios" Relationship="Self.usuarios_ibfk_1" FromRole="roles" ToRole="usuarios" />
+          <NavigationProperty Name="permisos" Relationship="Self.permisos_y_roles" FromRole="roles" ToRole="permisos" />
+        </EntityType>
+        <EntityType Name="tipos_de_productos">
+          <Key>
+            <PropertyRef Name="cod_tipo_producto" />
+          </Key>
+          <Property Name="cod_tipo_producto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tipo_de_producto" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="categorias" Relationship="Self.categorias_ibfk_1" FromRole="tipos_de_productos" ToRole="categorias" />
+        </EntityType>
+        <EntityType Name="ubicaciones">
+          <Key>
+            <PropertyRef Name="cod_ubicacion" />
+          </Key>
+          <Property Name="cod_ubicacion" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion_ubicacion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="tipo_almacen" Type="Boolean" />
+          <NavigationProperty Name="productos_y_ubicaciones" Relationship="Self.productos_y_ubicaciones_ibfk_2" FromRole="ubicaciones" ToRole="productos_y_ubicaciones" />
+          <NavigationProperty Name="ubicaciones1" Relationship="Self.ubicaciones_pertenecen" FromRole="ubicaciones" ToRole="ubicaciones1" />
+          <NavigationProperty Name="ubicaciones2" Relationship="Self.ubicaciones_pertenecen" FromRole="ubicaciones1" ToRole="ubicaciones" />
+        </EntityType>
+        <EntityType Name="usuarios">
+          <Key>
+            <PropertyRef Name="cod_usuario" />
+          </Key>
+          <Property Name="cod_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_usu" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="apellidos_usu" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="usuario" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="contrasenya" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="cod_rol" Type="Int32" />
+          <NavigationProperty Name="roles" Relationship="Self.usuarios_ibfk_1" FromRole="usuarios" ToRole="roles" />
+          <NavigationProperty Name="ventas" Relationship="Self.fk_usuarios_venta" FromRole="usuarios" ToRole="ventas" />
+        </EntityType>
+        <EntityType Name="ventas">
+          <Key>
+            <PropertyRef Name="cod_venta" />
+          </Key>
+          <Property Name="cod_venta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cod_usuario" Type="Int32" Nullable="false" />
+          <Property Name="mensaje" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fecha" Type="DateTime" />
+          <Property Name="total" Type="Double" />
+          <Property Name="iva" Type="Double" />
+          <Property Name="cod_cliente" Type="Int32" Nullable="false" />
+          <Property Name="total_mas_iva" Type="Double" />
+          <NavigationProperty Name="clientes" Relationship="Self.fk_cliente_venta" FromRole="ventas" ToRole="clientes" />
+          <NavigationProperty Name="usuarios" Relationship="Self.fk_usuarios_venta" FromRole="ventas" ToRole="usuarios" />
+          <NavigationProperty Name="ventas_de_productos" Relationship="Self.ventas_de_productos_ibfk_1" FromRole="ventas" ToRole="ventas_de_productos" />
+        </EntityType>
+        <EntityType Name="ventas_de_productos">
+          <Key>
+            <PropertyRef Name="cod_venta" />
+            <PropertyRef Name="cod_producto" />
+          </Key>
+          <Property Name="cod_venta" Type="Int32" Nullable="false" />
+          <Property Name="cod_producto" Type="Int32" Nullable="false" />
+          <Property Name="cantidad_vendida" Type="Int32" />
+          <Property Name="precio_total_unidades" Type="Double" />
+          <NavigationProperty Name="productos" Relationship="Self.ventas_de_productos_ibfk_2" FromRole="ventas_de_productos" ToRole="productos" />
+          <NavigationProperty Name="ventas" Relationship="Self.ventas_de_productos_ibfk_1" FromRole="ventas_de_productos" ToRole="ventas" />
+        </EntityType>
+        <Association Name="categorias_ibfk_1">
+          <End Role="tipos_de_productos" Type="Self.tipos_de_productos" Multiplicity="0..1" />
+          <End Role="categorias" Type="Self.categorias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipos_de_productos">
+              <PropertyRef Name="cod_tipo_producto" />
+            </Principal>
+            <Dependent Role="categorias">
+              <PropertyRef Name="cod_tipo_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_prodCateg">
+          <End Role="categorias" Type="Self.categorias" Multiplicity="0..1" />
+          <End Role="productos" Type="Self.productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categorias">
+              <PropertyRef Name="cod_categoria" />
+            </Principal>
+            <Dependent Role="productos">
+              <PropertyRef Name="cod_categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_cliente_venta">
+          <End Role="clientes" Type="Self.clientes" Multiplicity="1" />
+          <End Role="ventas" Type="Self.ventas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clientes">
+              <PropertyRef Name="cod_cliente" />
+            </Principal>
+            <Dependent Role="ventas">
+              <PropertyRef Name="cod_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="productos_ibfk_1">
+          <End Role="ofertas" Type="Self.ofertas" Multiplicity="0..1" />
+          <End Role="productos" Type="Self.productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ofertas">
+              <PropertyRef Name="cod_oferta" />
+            </Principal>
+            <Dependent Role="productos">
+              <PropertyRef Name="cod_oferta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="productos_y_ubicaciones_ibfk_1">
+          <End Role="productos" Type="Self.productos" Multiplicity="1" />
+          <End Role="productos_y_ubicaciones" Type="Self.productos_y_ubicaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productos">
+              <PropertyRef Name="cod_producto" />
+            </Principal>
+            <Dependent Role="productos_y_ubicaciones">
+              <PropertyRef Name="cod_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ventas_de_productos_ibfk_2">
+          <End Role="productos" Type="Self.productos" Multiplicity="1" />
+          <End Role="ventas_de_productos" Type="Self.ventas_de_productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productos">
+              <PropertyRef Name="cod_producto" />
+            </Principal>
+            <Dependent Role="ventas_de_productos">
+              <PropertyRef Name="cod_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="productos_y_ubicaciones_ibfk_2">
+          <End Role="ubicaciones" Type="Self.ubicaciones" Multiplicity="1" />
+          <End Role="productos_y_ubicaciones" Type="Self.productos_y_ubicaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ubicaciones">
+              <PropertyRef Name="cod_ubicacion" />
+            </Principal>
+            <Dependent Role="productos_y_ubicaciones">
+              <PropertyRef Name="cod_ubicacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="usuarios_ibfk_1">
+          <End Role="roles" Type="Self.roles" Multiplicity="0..1" />
+          <End Role="usuarios" Type="Self.usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="roles">
+              <PropertyRef Name="cod_rol" />
+            </Principal>
+            <Dependent Role="usuarios">
+              <PropertyRef Name="cod_rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_usuarios_venta">
+          <End Role="usuarios" Type="Self.usuarios" Multiplicity="1" />
+          <End Role="ventas" Type="Self.ventas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuarios">
+              <PropertyRef Name="cod_usuario" />
+            </Principal>
+            <Dependent Role="ventas">
+              <PropertyRef Name="cod_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ventas_de_productos_ibfk_1">
+          <End Role="ventas" Type="Self.ventas" Multiplicity="1" />
+          <End Role="ventas_de_productos" Type="Self.ventas_de_productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ventas">
+              <PropertyRef Name="cod_venta" />
+            </Principal>
+            <Dependent Role="ventas_de_productos">
+              <PropertyRef Name="cod_venta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ofertas_envio_clientes">
+          <End Role="clientes" Type="Self.clientes" Multiplicity="*" />
+          <End Role="ofertas" Type="Self.ofertas" Multiplicity="*" />
+        </Association>
+        <Association Name="permisos_y_roles">
+          <End Role="roles" Type="Self.roles" Multiplicity="*" />
+          <End Role="permisos" Type="Self.permisos" Multiplicity="*" />
+        </Association>
+        <Association Name="ubicaciones_pertenecen">
+          <End Role="ubicaciones" Type="Self.ubicaciones" Multiplicity="*" />
+          <End Role="ubicaciones1" Type="Self.ubicaciones" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="proyecto_tpvEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="categorias" EntityType="Self.categorias" />
+          <EntitySet Name="clientes" EntityType="Self.clientes" />
+          <EntitySet Name="ofertas" EntityType="Self.ofertas" />
+          <EntitySet Name="permisos" EntityType="Self.permisos" />
+          <EntitySet Name="productos" EntityType="Self.productos" />
+          <EntitySet Name="productos_y_ubicaciones" EntityType="Self.productos_y_ubicaciones" />
+          <EntitySet Name="roles" EntityType="Self.roles" />
+          <EntitySet Name="tipos_de_productos" EntityType="Self.tipos_de_productos" />
+          <EntitySet Name="ubicaciones" EntityType="Self.ubicaciones" />
+          <EntitySet Name="usuarios" EntityType="Self.usuarios" />
+          <EntitySet Name="ventas" EntityType="Self.ventas" />
+          <EntitySet Name="ventas_de_productos" EntityType="Self.ventas_de_productos" />
+          <AssociationSet Name="categorias_ibfk_1" Association="Self.categorias_ibfk_1">
+            <End Role="tipos_de_productos" EntitySet="tipos_de_productos" />
+            <End Role="categorias" EntitySet="categorias" />
+          </AssociationSet>
+          <AssociationSet Name="fk_prodCateg" Association="Self.fk_prodCateg">
+            <End Role="categorias" EntitySet="categorias" />
+            <End Role="productos" EntitySet="productos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_cliente_venta" Association="Self.fk_cliente_venta">
+            <End Role="clientes" EntitySet="clientes" />
+            <End Role="ventas" EntitySet="ventas" />
+          </AssociationSet>
+          <AssociationSet Name="productos_ibfk_1" Association="Self.productos_ibfk_1">
+            <End Role="ofertas" EntitySet="ofertas" />
+            <End Role="productos" EntitySet="productos" />
+          </AssociationSet>
+          <AssociationSet Name="productos_y_ubicaciones_ibfk_1" Association="Self.productos_y_ubicaciones_ibfk_1">
+            <End Role="productos" EntitySet="productos" />
+            <End Role="productos_y_ubicaciones" EntitySet="productos_y_ubicaciones" />
+          </AssociationSet>
+          <AssociationSet Name="ventas_de_productos_ibfk_2" Association="Self.ventas_de_productos_ibfk_2">
+            <End Role="productos" EntitySet="productos" />
+            <End Role="ventas_de_productos" EntitySet="ventas_de_productos" />
+          </AssociationSet>
+          <AssociationSet Name="productos_y_ubicaciones_ibfk_2" Association="Self.productos_y_ubicaciones_ibfk_2">
+            <End Role="ubicaciones" EntitySet="ubicaciones" />
+            <End Role="productos_y_ubicaciones" EntitySet="productos_y_ubicaciones" />
+          </AssociationSet>
+          <AssociationSet Name="usuarios_ibfk_1" Association="Self.usuarios_ibfk_1">
+            <End Role="roles" EntitySet="roles" />
+            <End Role="usuarios" EntitySet="usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="fk_usuarios_venta" Association="Self.fk_usuarios_venta">
+            <End Role="usuarios" EntitySet="usuarios" />
+            <End Role="ventas" EntitySet="ventas" />
+          </AssociationSet>
+          <AssociationSet Name="ventas_de_productos_ibfk_1" Association="Self.ventas_de_productos_ibfk_1">
+            <End Role="ventas" EntitySet="ventas" />
+            <End Role="ventas_de_productos" EntitySet="ventas_de_productos" />
+          </AssociationSet>
+          <AssociationSet Name="ofertas_envio_clientes" Association="Self.ofertas_envio_clientes">
+            <End Role="clientes" EntitySet="clientes" />
+            <End Role="ofertas" EntitySet="ofertas" />
+          </AssociationSet>
+          <AssociationSet Name="permisos_y_roles" Association="Self.permisos_y_roles">
+            <End Role="roles" EntitySet="roles" />
+            <End Role="permisos" EntitySet="permisos" />
+          </AssociationSet>
+          <AssociationSet Name="ubicaciones_pertenecen" Association="Self.ubicaciones_pertenecen">
+            <End Role="ubicaciones" EntitySet="ubicaciones" />
+            <End Role="ubicaciones1" EntitySet="ubicaciones" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="proyecto_tpvModelStoreContainer" CdmEntityContainer="proyecto_tpvEntities">
+          <EntitySetMapping Name="categorias">
+            <EntityTypeMapping TypeName="proyecto_tpvModel.categorias">
+              <MappingFragment StoreEntitySet="categorias">
+                <ScalarProperty Name="cod_categoria" ColumnName="cod_categoria" />
+                <ScalarProperty Name="categoria" ColumnName="categoria" />
+                <ScalarProperty Name="cod_tipo_producto" ColumnName="cod_tipo_producto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clientes">
+            <EntityTypeMapping TypeName="proyecto_tpvModel.clientes">
+              <MappingFragment StoreEntitySet="clientes">
+                <ScalarProperty Name="cod_cliente" ColumnName="cod_cliente" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="e_mail" ColumnName="e_mail" />
+                <ScalarProperty Name="poblacion" ColumnName="poblacion" />
+                <ScalarProperty Name="tipo_de_direccion" ColumnName="tipo_de_direccion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ofertas">
+            <EntityTypeMapping TypeName="proyecto_tpvModel.ofertas">
+              <MappingFragment StoreEntitySet="ofertas">
+                <ScalarProperty Name="cod_oferta" ColumnName="cod_oferta" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="periodo_oferta" ColumnName="periodo_oferta" />
+                <ScalarProperty Name="fichero" ColumnName="fichero" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="permisos">
+            <EntityTypeMapping TypeName="proyecto_tpvModel.permisos">
+              <MappingFragment StoreEntitySet="permisos">
+                <ScalarProperty Name="cod_permiso" ColumnName="cod_permiso" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="permiso_activado" ColumnName="permiso_activado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="productos">
+            <EntityTypeMapping TypeName="proyecto_tpvModel.productos">
+              <MappingFragment StoreEntitySet="productos">
+                <ScalarProperty Name="cod_producto" ColumnName="cod_producto" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="cod_categoria" ColumnName="cod_categoria" />
+                <ScalarProperty Name="cod_oferta" ColumnName="cod_oferta" />
+                <ScalarProperty Name="imagen_producto" ColumnName="imagen_producto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="productos_y_ubicaciones">
+            <EntityTypeMapping TypeName="proyecto_tpvModel.productos_y_ubicaciones">
+              <MappingFragment StoreEntitySet="productos_y_ubicaciones">
+                <ScalarProperty Name="cod_producto" ColumnName="cod_producto" />
+                <ScalarProperty Name="cod_ubicacion" ColumnName="cod_ubicacion" />
+                <ScalarProperty Name="cantidad_en_stock" ColumnName="cantidad_en_stock" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="roles">
+            <EntityTypeMapping TypeName="proyecto_tpvModel.roles">
+              <MappingFragment StoreEntitySet="roles">
+                <ScalarProperty Name="cod_rol" ColumnName="cod_rol" />
+                <ScalarProperty Name="tipo_rol" ColumnName="tipo_rol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipos_de_productos">
+            <EntityTypeMapping TypeName="proyecto_tpvModel.tipos_de_productos">
+              <MappingFragment StoreEntitySet="tipos_de_productos">
+                <ScalarProperty Name="cod_tipo_producto" ColumnName="cod_tipo_producto" />
+                <ScalarProperty Name="tipo_de_producto" ColumnName="tipo_de_producto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ubicaciones">
+            <EntityTypeMapping TypeName="proyecto_tpvModel.ubicaciones">
+              <MappingFragment StoreEntitySet="ubicaciones">
+                <ScalarProperty Name="cod_ubicacion" ColumnName="cod_ubicacion" />
+                <ScalarProperty Name="descripcion_ubicacion" ColumnName="descripcion_ubicacion" />
+                <ScalarProperty Name="tipo_almacen" ColumnName="tipo_almacen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuarios">
+            <EntityTypeMapping TypeName="proyecto_tpvModel.usuarios">
+              <MappingFragment StoreEntitySet="usuarios">
+                <ScalarProperty Name="cod_usuario" ColumnName="cod_usuario" />
+                <ScalarProperty Name="nombre_usu" ColumnName="nombre_usu" />
+                <ScalarProperty Name="apellidos_usu" ColumnName="apellidos_usu" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="contrasenya" ColumnName="contrasenya" />
+                <ScalarProperty Name="cod_rol" ColumnName="cod_rol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ventas">
+            <EntityTypeMapping TypeName="proyecto_tpvModel.ventas">
+              <MappingFragment StoreEntitySet="ventas">
+                <ScalarProperty Name="cod_venta" ColumnName="cod_venta" />
+                <ScalarProperty Name="cod_usuario" ColumnName="cod_usuario" />
+                <ScalarProperty Name="mensaje" ColumnName="mensaje" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="iva" ColumnName="iva" />
+                <ScalarProperty Name="cod_cliente" ColumnName="cod_cliente" />
+                <ScalarProperty Name="total_mas_iva" ColumnName="total_mas_iva" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ventas_de_productos">
+            <EntityTypeMapping TypeName="proyecto_tpvModel.ventas_de_productos">
+              <MappingFragment StoreEntitySet="ventas_de_productos">
+                <ScalarProperty Name="cod_venta" ColumnName="cod_venta" />
+                <ScalarProperty Name="cod_producto" ColumnName="cod_producto" />
+                <ScalarProperty Name="cantidad_vendida" ColumnName="cantidad_vendida" />
+                <ScalarProperty Name="precio_total_unidades" ColumnName="precio_total_unidades" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="ofertas_envio_clientes" TypeName="proyecto_tpvModel.ofertas_envio_clientes" StoreEntitySet="ofertas_envio_clientes">
+            <EndProperty Name="clientes">
+              <ScalarProperty Name="cod_cliente" ColumnName="cod_cliente" />
+            </EndProperty>
+            <EndProperty Name="ofertas">
+              <ScalarProperty Name="cod_oferta" ColumnName="cod_oferta" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="permisos_y_roles" TypeName="proyecto_tpvModel.permisos_y_roles" StoreEntitySet="permisos_y_roles">
+            <EndProperty Name="roles">
+              <ScalarProperty Name="cod_rol" ColumnName="cod_rol" />
+            </EndProperty>
+            <EndProperty Name="permisos">
+              <ScalarProperty Name="cod_permiso" ColumnName="cod_permiso" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="ubicaciones_pertenecen" TypeName="proyecto_tpvModel.ubicaciones_pertenecen" StoreEntitySet="ubicaciones_pertenecen">
+            <EndProperty Name="ubicaciones">
+              <ScalarProperty Name="cod_ubicacion" ColumnName="cod_ubicacion_almacen" />
+            </EndProperty>
+            <EndProperty Name="ubicaciones1">
+              <ScalarProperty Name="cod_ubicacion" ColumnName="cod_ubicacion_tienda" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

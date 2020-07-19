@@ -1,0 +1,246 @@
+﻿<Controls:MetroWindow x:Class="proyecto.tpv.agustin.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:proyecto.tpv.agustin"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:ac="clr-namespace:System.Windows.Controls;assembly=Accordion"
+        mc:Ignorable="d"
+        WindowState="Maximized"
+        Icon="Recursos/Iconos/iconApp2.png"              
+        Title="MainWindow" Height="600" Width="1000">
+    <DockPanel>
+
+        <Grid DockPanel.Dock="Left">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Proyecto TPV" Style="{StaticResource TxtEstiloTituloApp}"></TextBlock>
+            
+            <!-- Control de usuario con la lista de productos-->
+            <Grid x:Name="listaProductosTitulo" Grid.Row="1" Width="500">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <!--
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                -->
+                <TextBlock Text="Lista Productos" Margin="20,10,10,10" Style="{StaticResource TxtEstiloTituloAppGeneral_3}"></TextBlock>
+
+                <Grid x:Name="listaProductos" Grid.Row="1">
+                    
+                </Grid>
+                
+            </Grid>
+            
+            <!--
+            <Grid x:Name="gridCalculadora" Margin="10" Grid.Column="0" Grid.Row="2" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Button x:Name="btnCalc_1" Click="btnCalc_1_Click" Grid.Column="0" Grid.Row="0"
+                    Margin="5" Height="50" Width="50"
+                    Style="{DynamicResource AccentedSquareButtonStyle}">
+                    <TextBlock Text="1" Style="{StaticResource txtEstiloNumeroCalculadora}"></TextBlock>
+                </Button>
+
+                <Button x:Name="btnCalc_2" Click="btnCalc_2_Click" Grid.Column="1" Grid.Row="0"
+                    Margin="5" Height="50" Width="50" 
+                    Style="{DynamicResource AccentedSquareButtonStyle}">
+                    <TextBlock Text="2" Style="{StaticResource txtEstiloNumeroCalculadora}"></TextBlock>
+                </Button>
+
+                <Button x:Name="btnCalc_3" Click="btnCalc_3_Click" Grid.Column="2" Grid.Row="0"
+                    Margin="5" Height="50" Width="50" 
+                    Style="{DynamicResource AccentedSquareButtonStyle}">
+                    <TextBlock Text="3" Style="{StaticResource txtEstiloNumeroCalculadora}"></TextBlock>
+                </Button>
+
+                <Button x:Name="btnCalc_suma" Click="btnCalc_suma_Click" Grid.Column="3" Grid.Row="0"
+                    Margin="5" Height="50" Width="50" 
+                    Style="{DynamicResource AccentedSquareButtonStyle}">
+                    <TextBlock Text="+" Style="{StaticResource txtEstiloNumeroCalculadora}"></TextBlock>
+                </Button>
+
+                
+                <Button x:Name="btnCalc_4" Click="btnCalc_4_Click" Grid.Column="0" Grid.Row="1"
+                    Margin="5" Height="50" Width="50" 
+                    Style="{DynamicResource AccentedSquareButtonStyle}">
+                    <TextBlock Text="4" Style="{StaticResource txtEstiloNumeroCalculadora}"></TextBlock>
+                </Button>
+
+                <Button x:Name="btnCalc_5" Click="btnCalc_5_Click" Grid.Column="1" Grid.Row="1"
+                    Margin="5" Height="50" Width="50" 
+                    Style="{DynamicResource AccentedSquareButtonStyle}">
+                    <TextBlock Text="5" Style="{StaticResource txtEstiloNumeroCalculadora}"></TextBlock>
+                </Button>
+
+                <Button x:Name="btnCalc_6" Click="btnCalc_6_Click" Grid.Column="2" Grid.Row="1"
+                    Margin="5" Height="50" Width="50"
+                    Style="{DynamicResource AccentedSquareButtonStyle}">
+                    <TextBlock Text="6" Style="{StaticResource txtEstiloNumeroCalculadora}"></TextBlock>
+                </Button>
+
+                <Button x:Name="btnCalc_resta" Click="btnCalc_resta_Click" Grid.Column="3" Grid.Row="1"
+                    Margin="5" Height="50" Width="50" 
+                    Style="{DynamicResource AccentedSquareButtonStyle}">
+                    <TextBlock Text="-" Style="{StaticResource txtEstiloNumeroCalculadora}"></TextBlock>
+                </Button>
+
+                
+
+                <Button x:Name="btnCalc_7" Click="btnCalc_7_Click" Grid.Column="0" Grid.Row="2"
+                    Margin="5" Height="50" Width="50" 
+                    Style="{DynamicResource AccentedSquareButtonStyle}">
+                    <TextBlock Text="7" Style="{StaticResource txtEstiloNumeroCalculadora}"></TextBlock>
+                </Button>
+
+                <Button x:Name="btnCalc_8" Click="btnCalc_8_Click" Grid.Column="1" Grid.Row="2"
+                    Margin="5" Height="50" Width="50" 
+                    Style="{DynamicResource AccentedSquareButtonStyle}">
+                    <TextBlock Text="8" Style="{StaticResource txtEstiloNumeroCalculadora}"></TextBlock>
+                </Button>
+
+                <Button x:Name="btnCalc_9" Click="btnCalc_9_Click" Grid.Column="2" Grid.Row="2"
+                    Margin="5" Height="50" Width="50" 
+                    Style="{DynamicResource AccentedSquareButtonStyle}">
+                    <TextBlock Text="9" Style="{StaticResource txtEstiloNumeroCalculadora}"></TextBlock>
+                </Button>
+
+                <Button x:Name="btnCalc_multi" Click="btnCalc_multi_Click" Grid.Column="3" Grid.Row="2"
+                    Margin="5" Height="50" Width="50" 
+                    Style="{DynamicResource AccentedSquareButtonStyle}">
+                    <TextBlock Text="*" Style="{StaticResource txtEstiloNumeroCalculadora}"></TextBlock>
+                </Button>
+
+                
+                <Button x:Name="btnCalc_C" Click="btnCalc_C_Click" Grid.Column="0" Grid.Row="3"
+                    Margin="5" Height="50" Width="50" 
+                    Style="{DynamicResource AccentedSquareButtonStyle}">
+                    <TextBlock Text="C" Style="{StaticResource txtEstiloNumeroCalculadora}"></TextBlock>
+                </Button>
+
+                <Button x:Name="btnCalc_ptn" Click="btnCalc_ptn_Click" Grid.Column="1" Grid.Row="3"
+                    Margin="5" Height="50" Width="50" 
+                    Style="{DynamicResource AccentedSquareButtonStyle}">
+                    <TextBlock Text="." Style="{StaticResource txtEstiloNumeroCalculadora}"></TextBlock>
+                </Button>
+
+                <Button x:Name="btnCalc_0" Click="btnCalc_0_Click" Grid.Column="2" Grid.Row="3"
+                    Margin="5" Height="50" Width="50" 
+                    Style="{DynamicResource AccentedSquareButtonStyle}">
+                    <TextBlock Text="0" Style="{StaticResource txtEstiloNumeroCalculadora}"></TextBlock>
+                </Button>
+
+                <Button x:Name="btnCalc_div" Click="btnCalc_div_Click" Grid.Column="3" Grid.Row="3"
+                    Margin="5" Height="50" Width="50"
+                    Style="{DynamicResource AccentedSquareButtonStyle}">
+                    <TextBlock Text="/" Style="{StaticResource txtEstiloNumeroCalculadora}"></TextBlock>
+                </Button>
+                
+                
+                <Button x:Name="btnCalc_enter" Click="btnCalc_enter_Click" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2"
+                    Margin="10" Height="40"
+                    Style="{DynamicResource AccentedSquareButtonStyle}">
+                    <TextBlock Text="Enter" FontSize="20" Style="{StaticResource txtEstiloNumeroCalculadora}"></TextBlock>
+                </Button>
+                
+                
+                <Button x:Name="btnCalc_compra" Click="btnCalc_compra_Click" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2"
+                    Margin="10" Height="40"
+                    Style="{DynamicResource AccentedSquareButtonStyle}">
+                    <TextBlock Text="Comprar" FontSize="20" Style="{StaticResource txtEstiloNumeroCalculadora}"></TextBlock>
+                </Button>
+
+                <TextBox x:Name="textboxCalc_result" BorderBrush="Black" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="4" Margin="10" Width="270" Height="30"></TextBox>
+
+            </Grid>
+            -->
+            
+
+        </Grid>
+        
+        <Grid DockPanel.Dock="Right">
+            <!--Cada vez que se prueve, quitar el color Background="Blue"-->
+            <!--<Grid DockPanel.Dock="Top">-->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="BtnAdministracion" Click="BtnAdministracion_Click" Grid.Column="1" Grid.Row="0" Margin="10,10,10,10" Height="70" Width="70" Style="{DynamicResource SquareButtonStyle}">
+                <!--<TextBlock Text="Usuario"></TextBlock>-->
+                <Image Source="Recursos/Iconos/admin4.png" Height="60" Width="60"></Image>
+            </Button>
+
+            <Button x:Name="MostrarUsu" Click="MostrarUsu_Click" Grid.Column="2" Grid.Row="0" Margin="10,10,10,10" Height="70" Width="70" Style="{DynamicResource SquareButtonStyle}">
+                <!--<TextBlock Text="Usuario"></TextBlock>-->
+                <Image Source="Recursos/Iconos/userBlack2.png" Height="60" Width="60"></Image>
+            </Button>
+
+            <Button x:Name="btnLogOut" Click="btnLogOut_Click" Grid.Column="3" Grid.Row="0" Margin="10" Height="70" Width="70" Style="{DynamicResource SquareButtonStyle}">
+                <Image Source="Recursos/Iconos/cerrar_sesion_1.png" Height="55" Width="55"></Image>
+            </Button>
+
+            <Button x:Name="btnSalirAppMain" Click="btnSalirAppMain_Click" Grid.Column="4" Grid.Row="0" Margin="10" Height="70" Width="70" Style="{DynamicResource SquareButtonStyle}">
+                <Image Source="Recursos/Iconos/exitBlack2.png" Height="60" Width="60"></Image>
+            </Button>
+
+            <Grid Grid.Row="1" Grid.ColumnSpan="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Text="Tipos de Productos" Style="{StaticResource TxtEstiloTituloAppGeneral_3}"></TextBlock>
+                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Margin="10,10,20,10">
+                    <WrapPanel x:Name="wrapTiposProd"></WrapPanel>
+                </ScrollViewer>
+                
+                <TextBlock Grid.Row="2" Text="Productos" Style="{StaticResource TxtEstiloTituloAppGeneral_3}"></TextBlock>
+                <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto" Margin="10,10,20,10">
+                    <WrapPanel x:Name="wrapProductos"></WrapPanel>
+                </ScrollViewer>
+                
+                <!--
+                <WrapPanel x:Name="" Grid.Row="3" Margin="10,10,20,10"></WrapPanel>
+                -->
+                
+            </Grid>
+
+        </Grid>
+        
+    </DockPanel>
+</Controls:MetroWindow>

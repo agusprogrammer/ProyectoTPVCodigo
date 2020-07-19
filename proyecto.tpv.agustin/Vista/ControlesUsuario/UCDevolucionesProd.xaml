@@ -1,0 +1,95 @@
+﻿<UserControl x:Class="proyecto.tpv.agustin.Vista.ControlesUsuario.UCDevolucionesProd"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:proyecto.tpv.agustin.Vista.ControlesUsuario"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="1360">
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Devoluciones de productos" Margin="20,10,10,10" Style="{StaticResource TxtEstiloTituloAppGeneral_3}"></TextBlock>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1">
+            <TextBlock Text="Buscar por producto:" Margin="20,10,10,10" Style="{StaticResource TxtEstiloTituloAppGeneral_3}"></TextBlock>
+
+            <!--Cambiar a campo numerico si eso, revisar filtro-->
+            <TextBox x:Name="txtBuscarProd" TextChanged="txtBuscarProd_TextChanged" Height="20" Width="100" Margin="10,10,10,20" BorderBrush="Black"></TextBox>
+            
+            <!--
+            <Button x:Name="btnBuscarProd" Style="{DynamicResource AccentedSquareButtonStyle}" Height="30" Width="100" Margin="10,10,10,20" HorizontalAlignment="Left">
+                <TextBlock Text="Buscar" FontSize="20" Style="{StaticResource txtEstiloNumeroCalculadora}"></TextBlock>
+            </Button>
+            -->
+
+            <Rectangle Margin="10,10,10,15" Style="{StaticResource rectangleEstiloSeparadorFiltro}"></Rectangle>
+
+            <TextBlock Text="Fechas:" Margin="20,10,10,10" Style="{StaticResource TxtEstiloTituloAppGeneral_3}"></TextBlock>
+            
+            <!--NOTA: cambiar bindings a los productos-->
+            <TextBlock Text="Fecha Minima" Margin="20,10,10,10" Style="{StaticResource TxtEstiloTituloAppGeneral_3}"></TextBlock>
+            <DatePicker x:Name="datePickMin" SelectedDate="{Binding fechaInicial}" Height="20" Width="100" Margin="10,10,10,20" BorderBrush="Black"></DatePicker>
+
+            <TextBlock Text="Fecha Maxima" Margin="20,10,10,10" Style="{StaticResource TxtEstiloTituloAppGeneral_3}"></TextBlock>
+            <DatePicker x:Name="datePickMax" SelectedDate="{Binding fechaFinal}" Height="20" Width="100" Margin="10,10,10,20" BorderBrush="Black"></DatePicker>
+
+            <Button x:Name="btnFiltroFecha" Click="btnFiltroFecha_Click" Style="{DynamicResource AccentedSquareButtonStyle}" Height="30" Width="100" Margin="10,10,10,20" HorizontalAlignment="Left">
+                <TextBlock Text="Filtrar" FontSize="20" Style="{StaticResource txtEstiloNumeroCalculadora}"></TextBlock>
+            </Button>
+
+            <Button x:Name="btnQuitarFiltros" Click="btnQuitarFiltros_Click" Style="{DynamicResource AccentedSquareButtonStyle}" Height="30" Width="30" Margin="10,10,10,20">
+                <TextBlock Text="X" FontSize="20" Style="{StaticResource txtEstiloNumeroCalculadora}"></TextBlock>
+            </Button>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <!--
+            <Button x:Name="btnRestaVenta" Click="btnRestaVenta_Click" Style="{DynamicResource AccentedSquareButtonStyle}" Height="40" Width="100" Margin="10,5,10,5" HorizontalAlignment="Left">
+                <TextBlock Text="venta -1" FontSize="20" Style="{StaticResource txtEstiloNumeroCalculadora}"></TextBlock>
+            </Button>-->
+
+            <Button x:Name="btnRestaVentaProd" Click="btnRestaVentaProd_Click" Style="{DynamicResource AccentedSquareButtonStyle}" Height="40" Width="300" Margin="10,5,10,5" HorizontalAlignment="Left">
+                <TextBlock Text="Quitar la venta de un producto" FontSize="20" Style="{StaticResource txtEstiloNumeroCalculadora}"></TextBlock>
+            </Button>
+
+            <Button x:Name="btnRestaProd" Click="btnRestaProd_Click" Style="{DynamicResource AccentedSquareButtonStyle}" Height="40" Width="200" Margin="10,5,10,5" HorizontalAlignment="Left">
+                <TextBlock Text="Restar un producto" FontSize="20" Style="{StaticResource txtEstiloNumeroCalculadora}"></TextBlock>
+            </Button>
+            
+        </StackPanel>
+
+        <Grid Grid.Row="4">
+            <DataGrid x:Name="datagridDevolProds" ItemsSource="{Binding listaVentasProdListColletion}" AutoGenerateColumns="False" 
+                      CanUserAddRows="False">
+                <DataGrid.Columns>
+
+                    <DataGridTextColumn Header="Venta" Binding="{Binding ventas.cod_venta}" Width="100"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Producto" Binding="{Binding productos.descripcion}" Width="180"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Cantidad" Binding="{Binding cantidad_vendida}" Width="100"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Precio unidad" Binding="{Binding productos.precio}" Width="150"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Precio total unidades" Binding="{Binding precio_total_unidades}" Width="*"></DataGridTextColumn>
+
+                    <!--<DataGridTextColumn Header="Venta" Binding="{Binding ventas.cod_venta}" Width="100"></DataGridTextColumn>-->
+                    <DataGridTextColumn Header="Fecha de venta" Binding="{Binding ventas.fecha}" Width="*"></DataGridTextColumn>
+
+                    <DataGridTextColumn Header="Total de la venta" Binding="{Binding ventas.total}" Width="*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Iva" Binding="{Binding ventas.iva}" Width="100"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Total de la venta más IVA" Binding="{Binding ventas.total_mas_iva}" Width="*"></DataGridTextColumn>
+                    
+                </DataGrid.Columns>
+                
+            </DataGrid>
+        </Grid>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,382 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6BEF8A3B-E663-4EB3-B670-D7FEA88BD116}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>proyecto.tpv.agustin</RootNamespace>
+    <AssemblyName>proyecto.tpv.agustin</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Accordion, Version=3.5.40128.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Accordion.1.0.0\lib\Accordion.dll</HintPath>
+    </Reference>
+    <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ControlzEx.3.0.2.4\lib\net45\ControlzEx.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Extra, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Extra.1.0.1.0\lib\net45\MahApps.Extra.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=1.6.5.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.1.6.5\lib\net46\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.5.11\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="SAPBusinessObjects.WPF.Viewer, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\SAP BusinessObjects Enterprise XI 4.0\win32_x86\dotnet\SAPBusinessObjects.WPF.Viewer.dll</HintPath>
+    </Reference>
+    <Reference Include="SAPBusinessObjects.WPF.ViewerShared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\SAP BusinessObjects Enterprise XI 4.0\win32_x86\dotnet\SAPBusinessObjects.WPF.ViewerShared.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Controls.DataVisualization.Toolkit, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Controls.DataVisualization.Toolkit.4.0.0.0\lib\net40-Client\System.Windows.Controls.DataVisualization.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\ControlzEx.3.0.2.4\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=3.5.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.5.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=3.5.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.5.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=3.5.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.5.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=3.5.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.5.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=3.5.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.5.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Componentes\BtnProducto.cs" />
+    <Compile Include="Componentes\BtnTipoProd.cs" />
+    <Compile Include="MVVM\MVBase.cs" />
+    <Compile Include="MVVM\MVCategorias.cs" />
+    <Compile Include="MVVM\MVProductos.cs" />
+    <Compile Include="MVVM\MVTiposProductos.cs" />
+    <Compile Include="MVVM\MVUsuarios.cs" />
+    <Compile Include="MVVM\MVVentas.cs" />
+    <Compile Include="MVVM\MVVentasDeProductos.cs" />
+    <Compile Include="Servicios\CategoriasServicio.cs" />
+    <Compile Include="Servicios\ClienteServicio.cs" />
+    <Compile Include="Servicios\IServicioGenerico.cs" />
+    <Compile Include="Servicios\OfertasServicio.cs" />
+    <Compile Include="Servicios\PermisosServicio.cs" />
+    <Compile Include="Servicios\ProductosServicio.cs" />
+    <Compile Include="Servicios\Productos_Y_UbicacionesServicio.cs" />
+    <Compile Include="Servicios\RolesServicio.cs" />
+    <Compile Include="Servicios\ServicioGenerico.cs" />
+    <Compile Include="Servicios\ServicioSQL.cs" />
+    <Compile Include="Servicios\Tipos_De_ProductosServicio.cs" />
+    <Compile Include="Servicios\UbicacionesServicio.cs" />
+    <Compile Include="Servicios\UsuariosServicio.cs" />
+    <Compile Include="Servicios\VentasServicio.cs" />
+    <Compile Include="Servicios\Ventas_De_ProductosServicio.cs" />
+    <Compile Include="Vista\ControlesUsuario\UCDevoluciones.xaml.cs">
+      <DependentUpon>UCDevoluciones.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\ControlesUsuario\UCDevolucionesProd.xaml.cs">
+      <DependentUpon>UCDevolucionesProd.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\ControlesUsuario\UCFactura.xaml.cs">
+      <DependentUpon>UCFactura.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\ControlesUsuario\UCGraficoVentas.xaml.cs">
+      <DependentUpon>UCGraficoVentas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\ControlesUsuario\UCListaProds.xaml.cs">
+      <DependentUpon>UCListaProds.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\Dialogos\DialogAdminProg.xaml.cs">
+      <DependentUpon>DialogAdminProg.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\Dialogos\DialogCompra.xaml.cs">
+      <DependentUpon>DialogCompra.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\Dialogos\DialogInfoUsu.xaml.cs">
+      <DependentUpon>DialogInfoUsu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\Dialogos\DialogMostrarFactura.xaml.cs">
+      <DependentUpon>DialogMostrarFactura.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\Dialogos\LoginDialog.xaml.cs">
+      <DependentUpon>LoginDialog.xaml</DependentUpon>
+    </Compile>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Recursos\Estilos\Estilos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Icons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vista\ControlesUsuario\UCDevoluciones.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\ControlesUsuario\UCDevolucionesProd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\ControlesUsuario\UCFactura.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\ControlesUsuario\UCGraficoVentas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\ControlesUsuario\UCListaProds.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\Dialogos\DialogAdminProg.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\Dialogos\DialogCompra.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\Dialogos\DialogInfoUsu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\Dialogos\DialogMostrarFactura.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\Dialogos\LoginDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Modelo\categorias.cs">
+      <DependentUpon>ModelTPV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\clientes.cs">
+      <DependentUpon>ModelTPV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\ModelTPV.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelTPV.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\ModelTPV.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelTPV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\ModelTPV.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelTPV.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\ofertas.cs">
+      <DependentUpon>ModelTPV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\permisos.cs">
+      <DependentUpon>ModelTPV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\productos.cs">
+      <DependentUpon>ModelTPV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\productos_y_ubicaciones.cs">
+      <DependentUpon>ModelTPV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\roles.cs">
+      <DependentUpon>ModelTPV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\tipos_de_productos.cs">
+      <DependentUpon>ModelTPV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\ubicaciones.cs">
+      <DependentUpon>ModelTPV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\usuarios.cs">
+      <DependentUpon>ModelTPV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\ventas.cs">
+      <DependentUpon>ModelTPV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\ventas_de_productos.cs">
+      <DependentUpon>ModelTPV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Resource Include="Recursos\Iconos\admin4.png" />
+    <Resource Include="Recursos\Iconos\admin3.png" />
+    <Resource Include="Recursos\Iconos\admin1.png" />
+    <Resource Include="Recursos\Iconos\admin2.png" />
+    <Resource Include="Recursos\Iconos\exitBlack1.png" />
+    <Resource Include="Recursos\Iconos\exitBlack2.png" />
+    <Resource Include="Recursos\Iconos\iconApp3Black.png" />
+    <Resource Include="Recursos\Iconos\iconApp4Black.png" />
+    <Resource Include="Recursos\Iconos\iconApp4.png" />
+    <Resource Include="Recursos\Iconos\userBlack1.png" />
+    <Resource Include="Recursos\Iconos\userBlack2.png" />
+    <Resource Include="Recursos\Iconos\actualiza1.png" />
+    <Resource Include="Recursos\Iconos\actualiza2.png" />
+    <Resource Include="Recursos\Iconos\iconApp3.png" />
+    <Resource Include="Recursos\Iconos\cancel1.png" />
+    <Resource Include="Recursos\Iconos\cancel2.png" />
+    <Resource Include="Recursos\Iconos\cerrar_sesion_1.png" />
+    <Resource Include="Recursos\Iconos\cerrar_sesion_2.png" />
+    <Resource Include="Recursos\Iconos\cerrar_sesion_3.png" />
+    <Resource Include="Recursos\Iconos\cerrar_sesion_4.png" />
+    <Resource Include="Recursos\Iconos\completa1.png" />
+    <Resource Include="Recursos\Iconos\completa2.png" />
+    <Resource Include="Recursos\Iconos\exit1.png" />
+    <Resource Include="Recursos\Iconos\exit2.png" />
+    <Resource Include="Recursos\Iconos\exit3.png" />
+    <Resource Include="Recursos\Iconos\exit4.png" />
+    <Resource Include="Recursos\Iconos\exit5.png" />
+    <Resource Include="Recursos\Iconos\exit6.png" />
+    <Resource Include="Recursos\Iconos\iconApp1.png" />
+    <Resource Include="Recursos\Iconos\iconApp2.png" />
+    <Resource Include="Recursos\Iconos\max1.png" />
+    <Resource Include="Recursos\Iconos\max2.png" />
+    <Resource Include="Recursos\Iconos\max3.png" />
+    <Resource Include="Recursos\Iconos\negocio1.png" />
+    <Resource Include="Recursos\Iconos\negocio2.png" />
+    <Resource Include="Recursos\Iconos\ok1.png" />
+    <Resource Include="Recursos\Iconos\ok2.png" />
+    <Resource Include="Recursos\Iconos\user1.png" />
+    <Resource Include="Recursos\Iconos\user2.png" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EntityDeploy Include="Modelo\ModelTPV.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelTPV.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Modelo\ModelTPV.edmx.diagram">
+      <DependentUpon>ModelTPV.edmx</DependentUpon>
+    </None>
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Resource Include="Resources\Entypo.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Modelo\ModelTPV.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ModelTPV.Context.cs</LastGenOutput>
+      <DependentUpon>ModelTPV.edmx</DependentUpon>
+    </Content>
+    <Content Include="Modelo\ModelTPV.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelTPV.edmx</DependentUpon>
+      <LastGenOutput>ModelTPV.cs</LastGenOutput>
+    </Content>
+    <Resource Include="Resources\Entypo-license.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
